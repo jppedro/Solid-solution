@@ -7,7 +7,6 @@ from .enums import OrderStatus
 
 @dataclass
 class Order:
-    """Representa um pedido no sistema."""
     customer: Customer
     items: List[OrderItem]
     id: int = None

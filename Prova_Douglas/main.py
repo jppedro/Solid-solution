@@ -19,11 +19,6 @@ from config.database import DatabaseManager
 from typing import Dict
 
 def main():
-    """
-    Função principal que executa o exemplo de uso.
-    Replica exatamente as funcionalidades da main original do prova_douglas.py
-    usando a nova arquitetura refatorada seguindo princípios SOLID.
-    """
     
     # --- 1. Configuração da Injeção de Dependência ---
     # Criando instâncias das strategies
@@ -93,13 +88,10 @@ def main():
             id1 = order_service.create_order(customer1, items1, is_special=False)
             print(f"Pedido {id1} criado!")
             
-            # Processando pagamento com cartão (equivalente ao proc_pag original)
             payment_service.process_payment(id1, PaymentMethod.CARD, 250.0)
             
-            # Atualizando status para enviado (equivalente ao upd_st original)
             order_service.update_order_status(id1, OrderStatus.SHIPPED)
             
-            # Atualizando status para entregue
             order_service.update_order_status(id1, OrderStatus.DELIVERED)
             
         except ValueError as e:
@@ -122,10 +114,8 @@ def main():
             # Alterando strategy para VIP customer
             order_service._customer_discount_strategy = vip_customer_strategy
             
-            # Criando pedido VIP (equivalente ao add_ped original)
             id2 = order_service.create_order(customer2, items2, is_special=False)
             
-            # Processando pagamento com PIX (equivalente ao proc_pag original)
             payment_service.process_payment(id2, PaymentMethod.PIX, 160.0)
             
         except ValueError as e:
@@ -135,14 +125,11 @@ def main():
     
     print()
     
-    # --- 3. Geração de Relatórios (equivalente ao gerar_rel original) ---
     print("Gerando Relatórios")
     
-    # Relatório de vendas (equivalente ao gerar_rel('vendas') original)
     report_service.generate_report(ReportType.SALES)
     print()
     
-    # Relatório de clientes (equivalente ao gerar_rel('clientes') original)
     report_service.generate_report(ReportType.CLIENTS)
     
 

@@ -2,16 +2,7 @@ from interfaces.points_interface import IPointsStrategy
 
 
 class NormalPointsStrategy(IPointsStrategy):
-    """
-    Estratégia para cálculo de pontos para clientes normais.
-    Baseada na funcionalidade original: pts = int(p['tot'])
-    """
-    
     def calculate_points(self, order_total: float) -> int:
-        """
-        Calcula pontos para cliente normal.
-        Replica a lógica original: pts = int(p['tot'])
-        """
         return int(order_total)
     
     def get_points_multiplier(self) -> float:
@@ -22,11 +13,6 @@ class NormalPointsStrategy(IPointsStrategy):
 
 
 class VIPPointsStrategy(IPointsStrategy):
-    """
-    Estratégia para cálculo de pontos para clientes VIP.
-    Baseada na funcionalidade original: pts = int(p['tot'] * 2)
-    """
-    
     def calculate_points(self, order_total: float) -> int:
         """
         Calcula pontos para cliente VIP.
@@ -42,11 +28,6 @@ class VIPPointsStrategy(IPointsStrategy):
 
 
 class PremiumPointsStrategy(IPointsStrategy):
-    """
-    Estratégia para cálculo de pontos para clientes premium.
-    Exemplo de extensibilidade - nova strategy sem modificar código existente.
-    """
-    
     def calculate_points(self, order_total: float) -> int:
         """
         Calcula pontos para cliente premium.
@@ -62,10 +43,6 @@ class PremiumPointsStrategy(IPointsStrategy):
 
 
 class CorporatePointsStrategy(IPointsStrategy):
-    """
-    Estratégia para cálculo de pontos para clientes corporativos.
-    Exemplo de extensibilidade - nova strategy sem modificar código existente.
-    """
     
     def calculate_points(self, order_total: float) -> int:
         """

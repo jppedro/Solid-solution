@@ -3,16 +3,8 @@ from typing import List, Dict, Any
 
 
 class SalesReportStrategy(IReportStrategy):
-    """
-    Estratégia para geração de relatório de vendas.
-    Baseada na funcionalidade original: if tipo == 'vendas'
-    """
     
     def generate_report(self, data: List[Dict[str, Any]]) -> str:
-        """
-        Gera relatório de vendas.
-        Replica a lógica original da prova_douglas.py.
-        """
         report_lines = ["=== RELATÓRIO DE VENDAS ==="]
         total_general = 0
         
@@ -30,10 +22,6 @@ class SalesReportStrategy(IReportStrategy):
         return "\n".join(report_lines)
     
     def save_report(self, content: str, filename: str) -> bool:
-        """
-        Salva relatório de vendas em arquivo.
-        Replica a funcionalidade original: with open('rel_vendas.txt', 'w') as f
-        """
         try:
             with open(filename, 'w', encoding='utf-8') as f:
                 # Extrai apenas o total geral para salvar (como na prova original)
@@ -53,16 +41,7 @@ class SalesReportStrategy(IReportStrategy):
 
 
 class CustomerReportStrategy(IReportStrategy):
-    """
-    Estratégia para geração de relatório de clientes.
-    Baseada na funcionalidade original: elif tipo == 'clientes'
-    """
-    
     def generate_report(self, data: List[Dict[str, Any]]) -> str:
-        """
-        Gera relatório de clientes.
-        Replica a lógica original da prova_douglas.py.
-        """
         report_lines = ["=== RELATÓRIO DE CLIENTES ==="]
         
         for customer in data:
@@ -75,10 +54,6 @@ class CustomerReportStrategy(IReportStrategy):
         return "\n".join(report_lines)
     
     def save_report(self, content: str, filename: str) -> bool:
-        """
-        Salva relatório de clientes em arquivo.
-        Replica a funcionalidade original: with open('rel_clientes.txt', 'w') as f
-        """
         try:
             with open(filename, 'w', encoding='utf-8') as f:
                 # Salva dados dos clientes (como na prova original)
@@ -102,16 +77,8 @@ class CustomerReportStrategy(IReportStrategy):
 
 
 class JSONReportStrategy(IReportStrategy):
-    """
-    Estratégia para geração de relatório em formato JSON.
-    Exemplo de extensibilidade - nova strategy sem modificar código existente.
-    """
     
     def generate_report(self, data: List[Dict[str, Any]]) -> str:
-        """
-        Gera relatório em formato JSON.
-        Nova funcionalidade que pode ser adicionada sem modificar código existente.
-        """
         import json
         
         report_data = {
@@ -123,9 +90,6 @@ class JSONReportStrategy(IReportStrategy):
         return json.dumps(report_data, indent=2, ensure_ascii=False)
     
     def save_report(self, content: str, filename: str) -> bool:
-        """
-        Salva relatório JSON em arquivo.
-        """
         try:
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(content)
@@ -139,16 +103,8 @@ class JSONReportStrategy(IReportStrategy):
 
 
 class CSVReportStrategy(IReportStrategy):
-    """
-    Estratégia para geração de relatório em formato CSV.
-    Exemplo de extensibilidade - nova strategy sem modificar código existente.
-    """
     
     def generate_report(self, data: List[Dict[str, Any]]) -> str:
-        """
-        Gera relatório em formato CSV.
-        Nova funcionalidade que pode ser adicionada sem modificar código existente.
-        """
         if not data:
             return ""
         

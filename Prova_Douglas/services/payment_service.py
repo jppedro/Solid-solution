@@ -19,10 +19,6 @@ class PaymentService:
         self._order_service = order_service
 
     def _get_and_validate_order(self, order_id: int, amount_paid: float) -> Optional[Order]:
-        """
-        Método auxiliar para encapsular a busca do pedido e validações básicas.
-        Isso melhora o SRP (Responsabilidade Única) do método principal 'process_payment'.
-        """
         order = self._order_repo.get_by_id(order_id)
         
         if not order:
@@ -36,9 +32,6 @@ class PaymentService:
         return order
 
     def process_payment(self, order_id: int, method: PaymentMethod, amount_paid: float) -> bool:
-        """
-        Coordena o processo de pagamento.
-        """
         
         order = self._get_and_validate_order(order_id, amount_paid)
         if not order:

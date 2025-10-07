@@ -6,16 +6,8 @@ from models.enums import CustomerType, ItemType
 
 
 class ItemDiscountStrategy(IDiscountStrategy):
-    """
-    Estratégia principal para cálculo de descontos de itens.
-    Baseada na funcionalidade original: if i['tipo'] == 'normal'...
-    """
     
     def calculate_discount(self, items: List[OrderItem]) -> float:
-        """
-        Calcula o total dos itens aplicando os descontos específicos de cada item.
-        Replica a lógica original da prova_douglas.py.
-        """
         total = 0
         for item in items:
             if item.item_type == ItemType.NORMAL:
@@ -32,10 +24,6 @@ class ItemDiscountStrategy(IDiscountStrategy):
 
 
 class NormalCustomerStrategy(ICustomerDiscountStrategy):
-    """
-    Estratégia para clientes normais (sem desconto adicional).
-    Baseada na funcionalidade original: clientes que não são VIP
-    """
     
     def apply_customer_discount(self, total: float, customer: Customer) -> float:
         if customer.customer_type == CustomerType.NORMAL:
@@ -47,10 +35,6 @@ class NormalCustomerStrategy(ICustomerDiscountStrategy):
 
 
 class VIPCustomerStrategy(ICustomerDiscountStrategy):
-    """
-    Estratégia para clientes VIP (5% de desconto adicional).
-    Baseada na funcionalidade original: if t == 'vip': tot = tot * 0.95
-    """
     
     def apply_customer_discount(self, total: float, customer: Customer) -> float:
         if customer.customer_type == CustomerType.VIP:
@@ -62,10 +46,6 @@ class VIPCustomerStrategy(ICustomerDiscountStrategy):
 
 
 class SpecialOrderFeeStrategy(ISpecialOrderFeeStrategy):
-    """
-    Estratégia para pedidos especiais (15% de taxa adicional).
-    Baseada na funcionalidade da classe PedEspecial: tot = tot * 1.15
-    """
     
     def apply_special_fee(self, total: float, is_special: bool) -> float:
         if is_special:

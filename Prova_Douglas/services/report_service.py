@@ -16,10 +16,6 @@ class ReportService:
         }
 
     def generate_report(self, report_type: ReportType):
-        """
-        Gera o relatório, usando um dicionário para obter o método correto.
-        A lógica fica fechada para modificação, mas aberta para extensão (adicionando ao '_report_generators').
-        """
         # 1. Obtém a função de geração a partir do mapeamento
         generator = self._report_generators.get(report_type)
         
@@ -31,10 +27,6 @@ class ReportService:
             print("Tipo de relatório inválido.")
 
     def _generate_sales_report(self):
-        """
-        Adesão ao SRP: Este método tem a responsabilidade única de gerar o Relatório de Vendas.
-        (Busca, cálculo, formatação e escrita de arquivo).
-        """
         orders = self._order_repo.get_all()
         print("=== RELATÓRIO DE VENDAS ===")
         total_sales = 0
@@ -53,10 +45,6 @@ class ReportService:
             f.write(report_content)
 
     def _generate_clients_report(self):
-        """
-        Adesão ao SRP: Este método tem a responsabilidade única de gerar o Relatório de Clientes.
-        (Busca, cálculo, formatação e escrita de arquivo).
-        """
         customers = self._order_repo.get_distinct_customers()
         print("=== RELATÓRIO DE CLIENTES ===")
         report_content = ""

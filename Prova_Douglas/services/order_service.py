@@ -14,11 +14,6 @@ from models.enums import OrderStatus
 import random
 
 class OrderService:
-    """
-    Serviço responsável por orquestrar a criação e atualização de pedidos.
-    Segue o princípio SRP - responsabilidade única para coordenação de pedidos.
-    Segue o princípio DIP - depende de abstrações (interfaces).
-    """
     
     def __init__(
         self,
@@ -39,9 +34,6 @@ class OrderService:
         self._special_fee_strategy = special_fee_strategy
 
     def create_order(self, customer: Customer, items: List[OrderItem], is_special: bool = False) -> int:
-        """
-        Cria um novo pedido seguindo a lógica original da prova_douglas.py.
-        """
         # A validação de estoque agora é delegada a outro serviço (DIP)
         if not self._inventory_service.is_stock_sufficient(items):
             raise ValueError("Estoque insuficiente para um ou mais itens.")
@@ -69,9 +61,6 @@ class OrderService:
         return order_id
 
     def update_order_status(self, order_id: int, new_status: OrderStatus):
-        """
-        Atualiza o status de um pedido seguindo a lógica original da prova_douglas.py.
-        """
         order = self._order_repository.get_by_id(order_id)
         if order:
             self._order_repository.update_status(order_id, new_status)

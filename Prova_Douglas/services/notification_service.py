@@ -4,16 +4,8 @@ from models.order import Order
 from models.enums import OrderStatus
 
 class NotificationService:
-    """
-    Serviço com a responsabilidade ÚNICA de enviar notificações.
-    Segue o princípio SRP - responsabilidade única para envio de notificações.
-    """
     
     def send_notification(self, order: Order, status: OrderStatus):
-        """
-        Envia notificações baseadas no status do pedido.
-        Replica a lógica original da prova_douglas.py.
-        """
         customer_name = order.customer.name
         
         if status == OrderStatus.PENDING:

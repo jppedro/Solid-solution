@@ -8,12 +8,10 @@ from models.enums import OrderStatus
 from config.database import DatabaseManager
 
 class OrderRepository:
-    """Responsável pela persistência dos dados de pedidos."""
     def __init__(self, db_manager: DatabaseManager):
         self._db_manager = db_manager
 
     def add(self, order: Order) -> int:
-        """Adiciona um novo pedido ao banco de dados."""
         # Converte os itens para um formato serializável
         items_data = []
         for item in order.items:
@@ -35,37 +33,31 @@ class OrderRepository:
             return cursor.lastrowid
 
     def get_by_id(self, order_id: int) -> Optional[Order]:
-        """Busca um pedido pelo seu ID."""
         with self._db_manager as cursor:
             cursor.execute("SELECT * FROM orders WHERE id=?", (order_id,))
             row = cursor.fetchone()
             return self._row_to_order(row) if row else None
 
     def update_status(self, order_id: int, status: OrderStatus):
-        """Atualiza o status de um pedido."""
         with self._db_manager as cursor:
             cursor.execute("UPDATE orders SET status=? WHERE id=?", (status.value, order_id))
 
     def get_all(self) -> List[Order]:
-        """Retorna todos os pedidos."""
         with self._db_manager as cursor:
             cursor.execute("SELECT * FROM orders")
             rows = cursor.fetchall()
             return [self._row_to_order(row) for row in rows]
 
     def get_by_customer(self, customer_name: str) -> List[Order]:
-        """Retorna todos os pedidos de um cliente específico."""
         with self._db_manager as cursor:
             cursor.execute("SELECT * FROM orders WHERE customer_name=?", (customer_name,))
             rows = cursor.fetchall()
             return [self._row_to_order(row) for row in rows]
     
     def get_all_by_customer(self, customer_name: str) -> List[Order]:
-        """Retorna todos os pedidos de um cliente específico (alias para get_by_customer)."""
         return self.get_by_customer(customer_name)
     
     def get_distinct_customers(self) -> List[Customer]:
-        """Retorna todos os clientes únicos."""
         from models.enums import CustomerType
         
         with self._db_manager as cursor:
@@ -78,7 +70,6 @@ class OrderRepository:
             return customers
 
     def _row_to_order(self, row: tuple) -> Order:
-        """Converte uma linha do banco de dados em um objeto Order."""
         from models.enums import CustomerType, ItemType
         
         customer = Customer(name=row[1], customer_type=CustomerType(row[2]))

@@ -3,10 +3,6 @@ from models.order_item import OrderItem
 
 
 class InventoryService:
-    """
-    Serviço responsável por gerenciar validações de estoque.
-    Segue o princípio SRP - responsabilidade única para validação de estoque.
-    """
     
     def __init__(self):
         # Estoque simplificado como na prova original
@@ -17,16 +13,6 @@ class InventoryService:
         }
     
     def is_stock_sufficient(self, items: List[OrderItem]) -> bool:
-        """
-        Valida se há estoque suficiente para os itens.
-        Replica a lógica original: for i in its: if i['nome'] not in est...
-        
-        Args:
-            items: Lista de itens do pedido
-            
-        Returns:
-            True se há estoque suficiente, False caso contrário
-        """
         for item in items:
             product_name = item.name.strip()
             quantity = item.quantity
@@ -44,15 +30,6 @@ class InventoryService:
         return True
     
     def get_available_quantity(self, product_name: str) -> int:
-        """
-        Retorna a quantidade disponível de um produto.
-        
-        Args:
-            product_name: Nome do produto
-            
-        Returns:
-            Quantidade disponível em estoque
-        """
         return self.stock.get(product_name.strip(), 0)
     
     def get_stock_source(self) -> str:

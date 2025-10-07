@@ -1,0 +1,13 @@
+Pedido #1 Cliente: João Silva Total: R$245.00 Status: pendente
+Pedido #2 Cliente: João Silva Total: R$245.00 Status: pendente
+Pedido #3 Cliente: João Silva Total: R$245.00 Status: entregue
+Pedido #4 Cliente: Maria Santos Total: R$152.00 Status: aprovado
+Pedido #5 Cliente: João Silva Total: R$245.00 Status: entregue
+Pedido #6 Cliente: Maria Santos Total: R$152.00 Status: aprovado
+Pedido #7 Cliente: João Silva Total: R$245.00 Status: entregue
+Pedido #8 Cliente: Maria Santos Total: R$152.00 Status: aprovado
+Pedido #9 Cliente: João Silva Total: R$245.00 Status: entregue
+Pedido #10 Cliente: Maria Santos Total: R$152.00 Status: aprovado
+Pedido #11 Cliente: João Silva Total: R$245.00 Status: entregue
+Pedido #12 Cliente: Maria Santos Total: R$152.00 Status: aprovado
+Total Geral: R$2475.00

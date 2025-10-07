@@ -1,5 +1,7 @@
 # Solid-solution
-Refatoração da arquitetura utilizando princípios de SOLID para a avaliação de Padrões de Arquitetura de Software
+Refatoração da arquitetura utilizando princípios de SOLID para a avaliação de Padrões de Arquitetura de Software. 
+
+Para executar o projeto, apenas rodar python main.py estando dentro da pasta Prova_Douglas
 
 Grupo: 
 Breno Figuera - RA: 23016219
